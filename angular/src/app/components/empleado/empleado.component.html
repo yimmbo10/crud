@@ -1,0 +1,123 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive" id="empleados">
+        <button (click)="nuevo()" class="btn btn-outline-primary">Nuevo</button><hr>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nombres</th>
+              <th>Apellidos</th>
+              <th>Documento</th>
+              <th>Correo</th>
+              <th>Documento</th>
+              <th>Direccion</th>
+              <th>Estado</th>
+              <th colspan="2">Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr *ngFor='let e of listado_emp'>
+                  <td> {{ e.nombres }} </td>
+                  <td> {{ e.apellidos }} </td>
+                  <td> {{ e.documento }} </td>
+                  <td> {{ e.correo }} </td>
+                  <td> {{ e.documento }} </td>
+                  <td> {{ e.direccion }} </td>
+                  <td> {{ e.estado }} </td>
+                  <td><button (click)='edit(e.id)' class="btn btn-outline-success">Editar</button></td>
+                  <td><button (click)='eliminar(e.id)' class="btn btn-outline-danger">Eliminar</button></td>
+              </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<form novalidate action="" (ngSubmit)="submit(ngForm.value)" #ngForm="ngForm" class="form-info">
+      <div class="modal" tabindex="" id='modal-usuario' role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Datos del trabajador</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <span>Nombres</span>
+                          <input type="text" name="nombres"   [(ngModel)]='empleado.nombres' #nombres='ngModel' required class="form-control" placeholder="Introducir nombres">
+                          <div *ngIf='nombres.errors?.required && nombres.touched!=""' >
+                              <span class="text-danger">Campo requerido</span>
+                          </div>
+                        </div>
+                      </div>
+    
+                      <div class="col-md-6">
+                          <div class="form-group">
+                            <span>Apellidos</span>
+                            <input type="text" name="apellidos" [(ngModel)]='empleado.apellidos' #apellidos='ngModel' required class="form-control" placeholder="Introducir apellidos">
+                            <div *ngIf='apellidos.errors?.required && apellidos.touched!=""' >
+                              <span class="text-danger">Campo requerido</span>
+                          </div>
+                          </div>
+                      </div>
+    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <span>Correo</span>
+                              <input type="email" name="correo" [(ngModel)]='empleado.correo' #correo='ngModel' required class="form-control" placeholder="Introducir correo">
+                              <div *ngIf='correo.errors?.required && correo.touched!=""' >
+                                 <span class="text-danger">Campo requerido</span>
+                              </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <span>Documento</span>
+                              <input type="text" name="documento" [(ngModel)]='empleado.documento' #documento='ngModel' required class="form-control" placeholder="Introducir documento">
+                              <div *ngIf='documento.errors?.required && documento.touched!=""' >
+                                 <span class="text-danger">Campo requerido</span>
+                              </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <span>Dirección</span>
+                              <input type="text" name="direccion" [(ngModel)]='empleado.direccion' #direccion='ngModel' required class="form-control" placeholder="Introducir dirección">
+                              <div *ngIf='direccion.errors?.required && direccion.touched!=""' >
+                                 <span class="text-danger">Campo requerido</span>
+                              </div>
+                            </div>
+                        </div>
+    
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <span>Estado</span>
+                              <select name="estado" class="form-control" [(ngModel)]='empleado.estado'>
+                                <option></option>
+                                <option value="activo">Activo</option>
+                                <option value="inactivo">Inactivo</option>
+                              </select>
+                            </div>
+                        </div>
+    
+                    </div>
+              </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+</form>
+  
